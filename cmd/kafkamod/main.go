@@ -52,6 +52,6 @@ func syncW(sr *syncronic.Syncronic, num int, wg sync.WaitGroup) {
 			fmt.Println(err)
 			break
 		}
-		fmt.Println("Writer №:", num)
+		fmt.Printf("Writer №%d\n", num)
 	}
 }

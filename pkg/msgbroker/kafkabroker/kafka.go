@@ -29,11 +29,11 @@ func (b *Broker) Read(ctx context.Context, num int) {
 		time.Sleep(1 * time.Second)
 		mutex.RLock()
 		m, err := b.reader.ReadMessage(context.Background())
+		fmt.Printf("Reader №%d message at offset %d: %s = %s\n", num, m.Offset, string(m.Key), string(m.Value))
 		mutex.RUnlock()
 		if err != nil {
 			break
 		}
-		fmt.Printf("Reader №%d message at offset %d: %s = %s\n", num, m.Offset, string(m.Key), string(m.Value))
 	}
 
 	if err := b.reader.Close(); err != nil {
