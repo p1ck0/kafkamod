@@ -22,9 +22,8 @@ func NewBroker(writer *kafka.Writer, reader *kafka.Reader) *Broker {
 	}
 }
 
-func (b *Broker) Read(ctx context.Context, num int) {
+func (b *Broker) Read(ctx context.Context, num int, mutex *sync.RWMutex) {
 	defer b.reader.Close()
-	var mutex sync.RWMutex
 	for {
 		time.Sleep(1 * time.Second)
 		mutex.RLock()

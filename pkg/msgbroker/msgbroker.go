@@ -2,6 +2,7 @@ package msgbroker
 
 import (
 	"context"
+	"sync"
 
 	"github.com/p1ck0/kafkamod/pkg/msgbroker/kafkabroker"
 	"github.com/segmentio/kafka-go"
@@ -9,7 +10,7 @@ import (
 
 type MsgBroker interface {
 	Write(ctx context.Context, key []byte, value []byte) error
-	Read(ctx context.Context, num int)
+	Read(ctx context.Context, num int, mutex *sync.RWMutex)
 }
 
 type Broker struct {

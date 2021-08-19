@@ -27,5 +27,5 @@ func (s *Syncronic) SyncWrite(ctx context.Context, key []byte, value []byte) err
 
 func (s *Syncronic) SyncRead(ctx context.Context, num int) {
 	//time.Sleep(time.Second * 10)
-	s.broker.MsgBroker.Read(ctx, num)
+	s.broker.MsgBroker.Read(ctx, num, &s.mutex)
 }
